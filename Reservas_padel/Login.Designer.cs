@@ -109,12 +109,16 @@
             // btEnviarARegistro
             // 
             btEnviarARegistro.BackColor = Color.FromArgb(30, 32, 37);
-            btEnviarARegistro.ForeColor = SystemColors.ControlLightLight;
+            btEnviarARegistro.FlatAppearance.BorderColor = Color.FromArgb(30, 32, 37);
+            btEnviarARegistro.FlatAppearance.BorderSize = 0;
+            btEnviarARegistro.FlatStyle = FlatStyle.Flat;
+            btEnviarARegistro.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btEnviarARegistro.ForeColor = SystemColors.ButtonHighlight;
             btEnviarARegistro.Location = new Point(20, 457);
             btEnviarARegistro.Name = "btEnviarARegistro";
             btEnviarARegistro.Size = new Size(431, 33);
             btEnviarARegistro.TabIndex = 6;
-            btEnviarARegistro.Text = "button1";
+            btEnviarARegistro.Text = "Soy nuevo, no tengo cuenta";
             btEnviarARegistro.UseVisualStyleBackColor = false;
             btEnviarARegistro.Click += button1_Click;
             // 
@@ -133,7 +137,8 @@
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Login";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Login";
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

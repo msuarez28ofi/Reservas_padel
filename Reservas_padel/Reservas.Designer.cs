@@ -111,7 +111,7 @@
             label4 = new Label();
             label3 = new Label();
             label1 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpFecha = new DateTimePicker();
             label2 = new Label();
             tbCliente = new TextBox();
             btReservar = new Button();
@@ -956,15 +956,15 @@
             label1.TabIndex = 2;
             label1.Text = "Fecha";
             // 
-            // dateTimePicker1
+            // dtpFecha
             // 
-            dateTimePicker1.CalendarMonthBackground = SystemColors.WindowFrame;
-            dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(65, 112);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(179, 31);
-            dateTimePicker1.TabIndex = 0;
+            dtpFecha.CalendarMonthBackground = SystemColors.WindowFrame;
+            dtpFecha.CustomFormat = "dd/MM/yyyy";
+            dtpFecha.Format = DateTimePickerFormat.Custom;
+            dtpFecha.Location = new Point(65, 112);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(179, 31);
+            dtpFecha.TabIndex = 0;
             // 
             // label2
             // 
@@ -994,6 +994,7 @@
             btReservar.TabIndex = 5;
             btReservar.Text = "Reservar";
             btReservar.UseVisualStyleBackColor = true;
+            btReservar.Click += btReservar_Click;
             // 
             // cbxCancha
             // 
@@ -1028,7 +1029,7 @@
             Controls.Add(btReservar);
             Controls.Add(tbCliente);
             Controls.Add(label2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpFecha);
             Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(pnlEncabezado);
@@ -1050,7 +1051,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel panel1;
         private Label label1;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpFecha;
         private Label label2;
         private TextBox tbCliente;
         private Label label3;

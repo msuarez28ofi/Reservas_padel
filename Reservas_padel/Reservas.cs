@@ -79,8 +79,8 @@ namespace Reservas_padel
                         string[] partes = btn.Name.Split('_');
                         if (partes.Length < 4) continue;
 
-                        string canchaNombre = partes[1]; 
-                        string franja = btn.Text;        
+                        string canchaNombre = partes[1];
+                        string franja = btn.Text;
 
                         // Obtener ID de la cancha
                         string sqlCancha = "SELECT id_Cancha FROM Canchas WHERE Nombre_Cancha = @cancha";
@@ -131,6 +131,11 @@ namespace Reservas_padel
                 MessageBox.Show("Error al reservar: " + ex.Message);
                 conex.CerrarConexion();
             }
+        }
+
+        private void button53_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

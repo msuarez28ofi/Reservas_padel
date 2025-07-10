@@ -60,6 +60,7 @@
             // 
             tbContrasena.Location = new Point(150, 309);
             tbContrasena.Name = "tbContrasena";
+            tbContrasena.PasswordChar = '*';
             tbContrasena.Size = new Size(150, 31);
             tbContrasena.TabIndex = 2;
             // 
@@ -105,6 +106,7 @@
             btIngresar.TabIndex = 5;
             btIngresar.Text = "Ingresar";
             btIngresar.UseVisualStyleBackColor = true;
+            btIngresar.Click += btIngresar_Click;
             // 
             // btEnviarARegistro
             // 
@@ -120,7 +122,7 @@
             btEnviarARegistro.TabIndex = 6;
             btEnviarARegistro.Text = "Soy nuevo, no tengo cuenta";
             btEnviarARegistro.UseVisualStyleBackColor = false;
-            btEnviarARegistro.Click += button1_Click;
+            btEnviarARegistro.Click += btEnviarARegistro_Click;
             // 
             // Login
             // 
@@ -139,7 +141,6 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

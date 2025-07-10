@@ -80,13 +80,13 @@
             button35 = new Button();
             button36 = new Button();
             bt_Cubagua_7_830 = new Button();
-            button14 = new Button();
-            button15 = new Button();
-            button16 = new Button();
-            button17 = new Button();
-            button18 = new Button();
-            button19 = new Button();
-            button20 = new Button();
+            bt_Coche_1130_1pm = new Button();
+            bt_Coche_10_1130pm = new Button();
+            bt_Coche_830_10pm = new Button();
+            bt_Coche_7_830pm = new Button();
+            bt_Coche_530_7 = new Button();
+            bt_Coche_4_530 = new Button();
+            bt_Coche_230_4 = new Button();
             bt_Coche_1_230 = new Button();
             bt_Coche_1130_1 = new Button();
             bt_Coche_10_1130 = new Button();
@@ -195,13 +195,13 @@
             panel1.Controls.Add(button35);
             panel1.Controls.Add(button36);
             panel1.Controls.Add(bt_Cubagua_7_830);
-            panel1.Controls.Add(button14);
-            panel1.Controls.Add(button15);
-            panel1.Controls.Add(button16);
-            panel1.Controls.Add(button17);
-            panel1.Controls.Add(button18);
-            panel1.Controls.Add(button19);
-            panel1.Controls.Add(button20);
+            panel1.Controls.Add(bt_Coche_1130_1pm);
+            panel1.Controls.Add(bt_Coche_10_1130pm);
+            panel1.Controls.Add(bt_Coche_830_10pm);
+            panel1.Controls.Add(bt_Coche_7_830pm);
+            panel1.Controls.Add(bt_Coche_530_7);
+            panel1.Controls.Add(bt_Coche_4_530);
+            panel1.Controls.Add(bt_Coche_230_4);
             panel1.Controls.Add(bt_Coche_1_230);
             panel1.Controls.Add(bt_Coche_1130_1);
             panel1.Controls.Add(bt_Coche_10_1130);
@@ -662,68 +662,68 @@
             bt_Cubagua_7_830.Text = "7:00 - 8:30";
             bt_Cubagua_7_830.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // bt_Coche_1130_1pm
             // 
-            button14.Location = new Point(234, 546);
-            button14.Name = "button14";
-            button14.Size = new Size(128, 34);
-            button14.TabIndex = 33;
-            button14.Text = "11:30 - 1:00";
-            button14.UseVisualStyleBackColor = true;
+            bt_Coche_1130_1pm.Location = new Point(234, 546);
+            bt_Coche_1130_1pm.Name = "bt_Coche_1130_1pm";
+            bt_Coche_1130_1pm.Size = new Size(128, 34);
+            bt_Coche_1130_1pm.TabIndex = 33;
+            bt_Coche_1130_1pm.Text = "11:30 - 1:00";
+            bt_Coche_1130_1pm.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // bt_Coche_10_1130pm
             // 
-            button15.Location = new Point(234, 506);
-            button15.Name = "button15";
-            button15.Size = new Size(128, 34);
-            button15.TabIndex = 32;
-            button15.Text = "10:00 - 11:30";
-            button15.UseVisualStyleBackColor = true;
+            bt_Coche_10_1130pm.Location = new Point(234, 506);
+            bt_Coche_10_1130pm.Name = "bt_Coche_10_1130pm";
+            bt_Coche_10_1130pm.Size = new Size(128, 34);
+            bt_Coche_10_1130pm.TabIndex = 32;
+            bt_Coche_10_1130pm.Text = "10:00 - 11:30";
+            bt_Coche_10_1130pm.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // bt_Coche_830_10pm
             // 
-            button16.Location = new Point(234, 466);
-            button16.Name = "button16";
-            button16.Size = new Size(128, 34);
-            button16.TabIndex = 31;
-            button16.Text = "8:30 - 10:00";
-            button16.UseVisualStyleBackColor = true;
+            bt_Coche_830_10pm.Location = new Point(234, 466);
+            bt_Coche_830_10pm.Name = "bt_Coche_830_10pm";
+            bt_Coche_830_10pm.Size = new Size(128, 34);
+            bt_Coche_830_10pm.TabIndex = 31;
+            bt_Coche_830_10pm.Text = "8:30 - 10:00";
+            bt_Coche_830_10pm.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // bt_Coche_7_830pm
             // 
-            button17.Location = new Point(234, 426);
-            button17.Name = "button17";
-            button17.Size = new Size(128, 34);
-            button17.TabIndex = 30;
-            button17.Text = "7:00 - 8:30";
-            button17.UseVisualStyleBackColor = true;
+            bt_Coche_7_830pm.Location = new Point(234, 426);
+            bt_Coche_7_830pm.Name = "bt_Coche_7_830pm";
+            bt_Coche_7_830pm.Size = new Size(128, 34);
+            bt_Coche_7_830pm.TabIndex = 30;
+            bt_Coche_7_830pm.Text = "7:00 - 8:30";
+            bt_Coche_7_830pm.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // bt_Coche_530_7
             // 
-            button18.Location = new Point(234, 386);
-            button18.Name = "button18";
-            button18.Size = new Size(128, 34);
-            button18.TabIndex = 29;
-            button18.Text = "5:30 - 7:00";
-            button18.UseVisualStyleBackColor = true;
+            bt_Coche_530_7.Location = new Point(234, 386);
+            bt_Coche_530_7.Name = "bt_Coche_530_7";
+            bt_Coche_530_7.Size = new Size(128, 34);
+            bt_Coche_530_7.TabIndex = 29;
+            bt_Coche_530_7.Text = "5:30 - 7:00";
+            bt_Coche_530_7.UseVisualStyleBackColor = true;
             // 
-            // button19
+            // bt_Coche_4_530
             // 
-            button19.Location = new Point(234, 346);
-            button19.Name = "button19";
-            button19.Size = new Size(128, 34);
-            button19.TabIndex = 28;
-            button19.Text = "4:00 - 5:30";
-            button19.UseVisualStyleBackColor = true;
+            bt_Coche_4_530.Location = new Point(234, 346);
+            bt_Coche_4_530.Name = "bt_Coche_4_530";
+            bt_Coche_4_530.Size = new Size(128, 34);
+            bt_Coche_4_530.TabIndex = 28;
+            bt_Coche_4_530.Text = "4:00 - 5:30";
+            bt_Coche_4_530.UseVisualStyleBackColor = true;
             // 
-            // button20
+            // bt_Coche_230_4
             // 
-            button20.Location = new Point(234, 306);
-            button20.Name = "button20";
-            button20.Size = new Size(128, 34);
-            button20.TabIndex = 27;
-            button20.Text = "2:30 - 4:00";
-            button20.UseVisualStyleBackColor = true;
+            bt_Coche_230_4.Location = new Point(234, 306);
+            bt_Coche_230_4.Name = "bt_Coche_230_4";
+            bt_Coche_230_4.Size = new Size(128, 34);
+            bt_Coche_230_4.TabIndex = 27;
+            bt_Coche_230_4.Text = "2:30 - 4:00";
+            bt_Coche_230_4.UseVisualStyleBackColor = true;
             // 
             // bt_Coche_1_230
             // 
@@ -1119,13 +1119,13 @@
         private Button button35;
         private Button button36;
         private Button bt_Cubagua_7_830;
-        private Button button14;
-        private Button button15;
-        private Button button16;
-        private Button button17;
-        private Button button18;
-        private Button button19;
-        private Button button20;
+        private Button bt_Coche_1130_1pm;
+        private Button bt_Coche_10_1130pm;
+        private Button bt_Coche_830_10pm;
+        private Button bt_Coche_7_830pm;
+        private Button bt_Coche_530_7;
+        private Button bt_Coche_4_530;
+        private Button bt_Coche_230_4;
         private Button bt_Coche_1_230;
         private Button bt_Coche_1130_1;
         private Button bt_Coche_10_1130;

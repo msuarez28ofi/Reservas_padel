@@ -31,7 +31,36 @@ namespace Reservas_padel
 
         private void cbxCancha_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string tipoSeleccionado = cbxCancha.SelectedItem.ToString();
 
+            // Listas de canchas según tipo
+            List<string> techadas = new List<string> { "LaTortuga", "LosFrailes", "LosTestigos" };
+            List<string> notechadas = new List<string> { "Margarita", "Cubagua", "Coche" };
+
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is Button && ctrl.Name.StartsWith("bt_"))
+                {
+                    Button btn = (Button)ctrl;
+                    string[] partes = btn.Name.Split('_');
+                    if (partes.Length < 2) continue;
+
+                    string cancha = partes[1];
+
+                    if (tipoSeleccionado == "Todas")
+                    {
+                        btn.Enabled = true;
+                    }
+                    else if (tipoSeleccionado == "Techada")
+                    {
+                        btn.Enabled = techadas.Contains(cancha);
+                    }
+                    else if (tipoSeleccionado == "No techada")
+                    {
+                        btn.Enabled = notechadas.Contains(cancha);
+                    }
+                }
+            }
         }
 
         private void bt_Margarita_830_10_Click(object sender, EventArgs e)
@@ -137,7 +166,22 @@ namespace Reservas_padel
         {
 
         }
+
+        private void bt_Los_testigos_530_7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_La_tortuga_1_230_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVerReservas_Click(object sender, EventArgs e)
+        {
+            MisReservas ver = new MisReservas();
+            ver.ShowDialog();
+        }
     }
 }
-//prueba para commit 
-//segunda prueba para commit 
+

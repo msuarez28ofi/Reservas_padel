@@ -38,6 +38,20 @@ namespace Reservas_padel
                 return;
             }
 
+            // Valida longitud de la contraseña
+            if (contrasena.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres.");
+                return;
+            }
+
+            // Valida formato del correo
+            if (!correo.Contains("@") || !correo.Contains("."))
+            {
+                MessageBox.Show("Ingrese un correo electrónico válido.");
+                return;
+            }
+
             try
             {
                 conex.connnect();

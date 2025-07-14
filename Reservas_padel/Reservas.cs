@@ -211,10 +211,13 @@ namespace Reservas_padel
         {
             MisReservas ver = new MisReservas();
             ver.ShowDialog();
+            this.Close();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            Login frm = new Login();
+            frm.Show();
             this.Close();
         }
 

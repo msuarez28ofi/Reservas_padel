@@ -31,7 +31,7 @@
             panel1 = new Panel();
             iconButton1 = new FontAwesome.Sharp.IconButton();
             dgvMisReservas = new DataGridView();
-            button1 = new Button();
+            btEliminarReserva = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMisReservas).BeginInit();
             SuspendLayout();
@@ -77,14 +77,16 @@
             dgvMisReservas.TabIndex = 1;
             dgvMisReservas.CellContentClick += dtwMisReservas_CellContentClick;
             // 
-            // button1
+            // btEliminarReserva
             // 
-            button1.Location = new Point(76, 600);
-            button1.Name = "button1";
-            button1.Size = new Size(148, 62);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btEliminarReserva.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btEliminarReserva.Location = new Point(530, 591);
+            btEliminarReserva.Name = "btEliminarReserva";
+            btEliminarReserva.Size = new Size(310, 62);
+            btEliminarReserva.TabIndex = 2;
+            btEliminarReserva.Text = "Eliminar reserva";
+            btEliminarReserva.UseVisualStyleBackColor = true;
+            btEliminarReserva.Click += btEliminarReserva_Click;
             // 
             // MisReservas
             // 
@@ -92,7 +94,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 32, 37);
             ClientSize = new Size(1376, 694);
-            Controls.Add(button1);
+            Controls.Add(btEliminarReserva);
             Controls.Add(dgvMisReservas);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -110,6 +112,6 @@
         private Panel panel1;
         private FontAwesome.Sharp.IconButton iconButton1;
         private DataGridView dgvMisReservas;
-        private Button button1;
+        private Button btEliminarReserva;
     }
 }

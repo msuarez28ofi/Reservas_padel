@@ -33,22 +33,20 @@ namespace Reservas_padel
             cbxCancha.Items.Add("No techada");
             cbxCancha.SelectedIndex = 0;
 
-
+            ActualizarFranjasOcupadas();
         }
 
         private void cbxCancha_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tipoSeleccionado = cbxCancha.SelectedItem.ToString();
 
-            // Listas de canchas según tipo
             List<string> techadas = new List<string> { "LaTortuga", "LosFrailes", "LosTestigos" };
-            List<string> notechadas = new List<string> { "Margarita", "Cubagua", "Coche" };
+            List<string> noTechadas = new List<string> { "Margarita", "Cubagua", "Coche" };
 
-            foreach (Control ctrl in this.Controls)
+            foreach (Control ctrl in panel1.Controls)
             {
-                if (ctrl is Button && ctrl.Name.StartsWith("bt_"))
+                if (ctrl is Button btn && btn.Name.StartsWith("bt_"))
                 {
-                    Button btn = (Button)ctrl;
                     string[] partes = btn.Name.Split('_');
                     if (partes.Length < 2) continue;
 
@@ -56,15 +54,15 @@ namespace Reservas_padel
 
                     if (tipoSeleccionado == "Todas")
                     {
-                        btn.Enabled = true;
+                        btn.Visible = true;
                     }
                     else if (tipoSeleccionado == "Techada")
                     {
-                        btn.Enabled = techadas.Contains(cancha);
+                        btn.Visible = techadas.Contains(cancha);
                     }
                     else if (tipoSeleccionado == "No techada")
                     {
-                        btn.Enabled = notechadas.Contains(cancha);
+                        btn.Visible = noTechadas.Contains(cancha);
                     }
                 }
             }
@@ -77,13 +75,13 @@ namespace Reservas_padel
             if (btn.Tag == null || btn.Tag.ToString() != "seleccionado")
             {
                 btn.Tag = "seleccionado";
-                btn.BackColor = Color.FromArgb(64, 64, 64);  
+                btn.BackColor = Color.FromArgb(64, 64, 64);
                 btn.ForeColor = Color.White;
             }
             else
             {
                 btn.Tag = "";
-                btn.BackColor = SystemColors.Control; 
+                btn.BackColor = SystemColors.Control;
                 btn.ForeColor = Color.Black;
             }
         }
@@ -218,6 +216,63 @@ namespace Reservas_padel
         private void iconButton1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ActualizarFranjasOcupadas()
+        {
+            DateTime fecha = dtpFecha.Value.Date;
+            conex.connnect();
+
+            foreach (Control ctrl in panel1.Controls)
+            {
+                if (ctrl is Button btn && btn.Name.StartsWith("bt_"))
+                {
+
+                    // Restaurar botón por defecto antes de verificar si está ocupado
+                    btn.Enabled = true;
+                    btn.BackColor = SystemColors.Control;
+                    btn.ForeColor = Color.Black;
+                    btn.Tag = null;
+
+                    string[] partes = btn.Name.Split('_');
+                    if (partes.Length < 3) continue;
+
+                    string nombreCancha = partes[1];
+                    string franja = btn.Text;
+
+                    string sqlCancha = "SELECT id_Cancha FROM Canchas WHERE Nombre_Cancha = @nombre";
+                    MySqlCommand cmdCancha = new MySqlCommand(sqlCancha, conex.conn);
+                    cmdCancha.Parameters.AddWithValue("@nombre", nombreCancha);
+                    object resultadoCancha = cmdCancha.ExecuteScalar();
+
+                    if (resultadoCancha != null)
+                    {
+                        int idCancha = Convert.ToInt32(resultadoCancha);
+
+                        string sqlCheck = "SELECT COUNT(*) FROM Reservas WHERE fecha_reserva = @fecha AND franja_horaria = @franja AND id_Cancha = @cancha";
+                        MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conex.conn);
+                        cmdCheck.Parameters.AddWithValue("@fecha", fecha);
+                        cmdCheck.Parameters.AddWithValue("@franja", franja);
+                        cmdCheck.Parameters.AddWithValue("@cancha", idCancha);
+
+                        int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                        if (existe > 0)
+                        {
+                            btn.Enabled = false;
+                            btn.BackColor = Color.FromArgb(64, 64, 64);
+                            btn.ForeColor = Color.White;
+                        }
+                    }
+                }
+            }
+
+            conex.CerrarConexion();
+        }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            ActualizarFranjasOcupadas();
         }
     }
 }

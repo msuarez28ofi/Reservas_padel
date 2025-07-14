@@ -1122,6 +1122,7 @@
             dtpFecha.Name = "dtpFecha";
             dtpFecha.Size = new Size(144, 27);
             dtpFecha.TabIndex = 0;
+            dtpFecha.ValueChanged += dtpFecha_ValueChanged;
             // 
             // label2
             // 

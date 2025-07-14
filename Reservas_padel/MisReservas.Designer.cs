@@ -67,6 +67,7 @@
             dgvMisReservas.AllowUserToAddRows = false;
             dgvMisReservas.AllowUserToDeleteRows = false;
             dgvMisReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMisReservas.BackgroundColor = Color.SeaShell;
             dgvMisReservas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMisReservas.Location = new Point(76, 96);
             dgvMisReservas.Name = "dgvMisReservas";

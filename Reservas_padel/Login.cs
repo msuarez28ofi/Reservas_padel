@@ -68,5 +68,12 @@ namespace Reservas_padel
                 MessageBox.Show("Error al iniciar sesión: " + ex.Message);
             }
         }
+
+        private void btOlvidaContrasena_Click(object sender, EventArgs e)
+        {
+            RecuperarContrasena frm = new RecuperarContrasena();
+            frm.Show();
+            this.Close();
+        }
     }
 }

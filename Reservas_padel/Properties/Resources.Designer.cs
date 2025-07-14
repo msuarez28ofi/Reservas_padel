@@ -63,6 +63,26 @@ namespace Reservas_padel.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3 {
+            get {
+                object obj = ResourceManager.GetObject("3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap datos_ {
+            get {
+                object obj = ResourceManager.GetObject("datos ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoPadel {
             get {
                 object obj = ResourceManager.GetObject("logoPadel", resourceCulture);
@@ -76,6 +96,16 @@ namespace Reservas_padel.Properties {
         internal static System.Drawing.Bitmap pelota_padel {
             get {
                 object obj = ResourceManager.GetObject("pelota_padel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reserva11 {
+            get {
+                object obj = ResourceManager.GetObject("reserva11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

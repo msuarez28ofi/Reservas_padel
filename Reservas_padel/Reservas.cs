@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Reservas_padel;
 
 namespace Reservas_padel
 {
@@ -276,6 +277,24 @@ namespace Reservas_padel
         private void dtpFecha_ValueChanged(object sender, EventArgs e)
         {
             ActualizarFranjasOcupadas();
+        }
+
+        private void btIrAPago_Click(object sender, EventArgs e)
+        {
+            // Verificar que haya una selección válida
+            if (cbxCancha.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar el tipo de cancha.");
+                return;
+            }
+
+            string tipoSeleccionado = cbxCancha.SelectedItem.ToString(); // "Techada" o "No techada"
+            DateTime fecha = dtpFecha.Value;
+
+            // Llamar al formulario de método de pago
+            SeleccionMetodoPago frm = new SeleccionMetodoPago(tipoSeleccionado, fecha);
+            frm.Show();
+            this.Close(); // Cierra el formulario de Reservas
         }
     }
 }

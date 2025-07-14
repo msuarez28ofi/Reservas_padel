@@ -70,11 +70,6 @@ namespace Reservas_padel
             }
         }
 
-        private void bt_Margarita_830_10_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnFranja_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -212,22 +207,6 @@ namespace Reservas_padel
                     BuscarBotonesSeleccionados(ctrl.Controls, lista); // recursivo
                 }
             }
-        }
-
-
-        private void button53_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bt_Los_testigos_530_7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bt_La_tortuga_1_230_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnVerReservas_Click(object sender, EventArgs e)

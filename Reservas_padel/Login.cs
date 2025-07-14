@@ -7,6 +7,8 @@ namespace Reservas_padel
     public partial class Login : Form
     {
         public static string nombreUsuario = "";
+        public static int idUsuario = 0;
+
 
         public Login()
         {
@@ -35,18 +37,20 @@ namespace Reservas_padel
             {
                 conex.connnect();
 
-                string consulta = "SELECT * FROM Usuario WHERE Correo_Usuario = '" + correo + "' AND Contrasena_Usuario = '" + contrasena + "'";
+                string consulta = "SELECT * FROM Usuario WHERE Correo_Usuario = @correo AND Contrasena_Usuario = @contrasena";
                 MySqlCommand cmd = new MySqlCommand(consulta, conex.conn);
+                cmd.Parameters.AddWithValue("@correo", correo);
+                cmd.Parameters.AddWithValue("@contrasena", contrasena);
+
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
                     MessageBox.Show("Inicio de sesión exitoso.");
 
-                    // Guardar el nombre del usuario en la variable pública
                     nombreUsuario = reader["Nombre_Usuario"].ToString();
+                    idUsuario = Convert.ToInt32(reader["id_Usuario"]);
 
-                    // Abrir el formulario de reservas
                     Reservas frm = new Reservas();
                     frm.Show();
                     this.Hide();

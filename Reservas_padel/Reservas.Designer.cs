@@ -147,6 +147,7 @@
             iconButton1.Size = new Size(112, 60);
             iconButton1.TabIndex = 2;
             iconButton1.UseVisualStyleBackColor = false;
+            iconButton1.Click += iconButton1_Click;
             // 
             // panel1
             // 
@@ -950,13 +951,15 @@
             // 
             // bt_Margarita_7_830
             // 
+            bt_Margarita_7_830.BackColor = SystemColors.Control;
             bt_Margarita_7_830.Location = new Point(41, 106);
             bt_Margarita_7_830.Margin = new Padding(2);
             bt_Margarita_7_830.Name = "bt_Margarita_7_830";
             bt_Margarita_7_830.Size = new Size(128, 34);
             bt_Margarita_7_830.TabIndex = 2;
             bt_Margarita_7_830.Text = "7:00 - 8:30";
-            bt_Margarita_7_830.UseVisualStyleBackColor = true;
+            bt_Margarita_7_830.UseVisualStyleBackColor = false;
+            bt_Margarita_7_830.Click += btnFranja_Click;
             // 
             // label8
             // 

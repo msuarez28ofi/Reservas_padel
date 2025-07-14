@@ -26,7 +26,14 @@ namespace Reservas_padel
         private void Reservas_Load(object sender, EventArgs e)
         {
             tbCliente.Text = Login.nombreUsuario;
+
+            cbxCancha.Items.Clear();
+            cbxCancha.Items.Add("Todas");
+            cbxCancha.Items.Add("Techada");
+            cbxCancha.Items.Add("No techada");
             cbxCancha.SelectedIndex = 0;
+
+
         }
 
         private void cbxCancha_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,12 +82,14 @@ namespace Reservas_padel
             if (btn.Tag == null || btn.Tag.ToString() != "seleccionado")
             {
                 btn.Tag = "seleccionado";
-                btn.BackColor = Color.LightGreen;  // se pinta verde
+                btn.BackColor = Color.FromArgb(64, 64, 64);  
+                btn.ForeColor = Color.White;
             }
             else
             {
                 btn.Tag = "";
-                btn.BackColor = SystemColors.Control; // vuelve al color normal
+                btn.BackColor = SystemColors.Control; 
+                btn.ForeColor = Color.Black;
             }
         }
 
@@ -92,67 +101,95 @@ namespace Reservas_padel
             {
                 conex.connnect();
 
-                // Obtener ID del usuario logueado
-                string sqlUsuario = "SELECT id_Usuario FROM Usuario WHERE Nombre_Usuario = @nombre";
-                MySqlCommand cmdUsuario = new MySqlCommand(sqlUsuario, conex.conn);
-                cmdUsuario.Parameters.AddWithValue("@nombre", Login.nombreUsuario);
-                int idUsuario = Convert.ToInt32(cmdUsuario.ExecuteScalar());
-
-                foreach (Control ctrl in this.Controls)
+                if (conex.conn.State != ConnectionState.Open)
                 {
-                    if (ctrl is Button && ctrl.Tag != null && ctrl.Tag.ToString() == "seleccionado")
+                    MessageBox.Show("Conexión fallida. La conexión no está abierta.");
+                    return;
+                }
+
+                // Buscar todos los botones seleccionados
+                List<Button> botonesSeleccionados = new List<Button>();
+                BuscarBotonesSeleccionados(this.Controls, botonesSeleccionados);
+
+                if (botonesSeleccionados.Count == 0)
+                {
+                    MessageBox.Show("No se seleccionó ninguna franja.");
+                    return;
+                }
+
+                foreach (Button btn in botonesSeleccionados)
+                {
+                    string[] partes = btn.Name.Split('_');
+                    if (partes.Length < 3)
                     {
-                        Button btn = (Button)ctrl;
+                        MessageBox.Show("Nombre del botón inválido: " + btn.Name);
+                        continue;
+                    }
 
-                        // Extraer nombre del botón
-                        string[] partes = btn.Name.Split('_');
-                        if (partes.Length < 4) continue;
+                    string nombreCancha = partes[1];
+                    string franja = btn.Text;
 
-                        string canchaNombre = partes[1];
-                        string franja = btn.Text;
+                    string sqlCancha = "SELECT id_Cancha FROM Canchas WHERE Nombre_Cancha = @nombre";
+                    MySqlCommand cmdCancha = new MySqlCommand(sqlCancha, conex.conn);
+                    cmdCancha.Parameters.AddWithValue("@nombre", nombreCancha);
+                    object resultadoCancha = cmdCancha.ExecuteScalar();
 
-                        // Obtener ID de la cancha
-                        string sqlCancha = "SELECT id_Cancha FROM Canchas WHERE Nombre_Cancha = @cancha";
-                        MySqlCommand cmdCancha = new MySqlCommand(sqlCancha, conex.conn);
-                        cmdCancha.Parameters.AddWithValue("@cancha", canchaNombre);
-                        int idCancha = Convert.ToInt32(cmdCancha.ExecuteScalar());
+                    if (resultadoCancha == null)
+                    {
+                        MessageBox.Show("No se encontró la cancha en la base: " + nombreCancha);
+                        continue;
+                    }
 
-                        // Verificar si ya está reservada
-                        string sqlCheck = "SELECT COUNT(*) FROM Reservas WHERE fecha_reserva = @fecha AND franja_horaria = @franja AND id_Cancha = @idCancha";
-                        MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conex.conn);
-                        cmdCheck.Parameters.AddWithValue("@fecha", fecha);
-                        cmdCheck.Parameters.AddWithValue("@franja", franja);
-                        cmdCheck.Parameters.AddWithValue("@idCancha", idCancha);
-                        int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+                    int idCancha = Convert.ToInt32(resultadoCancha);
+                    int idUsuario = Login.idUsuario;
 
-                        if (existe > 0)
+                    if (idUsuario <= 0)
+                    {
+                        MessageBox.Show("ID de usuario inválido: " + idUsuario);
+                        continue;
+                    }
+
+                    // Verificar si ya existe la reserva
+                    string sqlCheck = "SELECT COUNT(*) FROM Reservas WHERE fecha_reserva = @fecha AND franja_horaria = @franja AND id_Cancha = @cancha";
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conex.conn);
+                    cmdCheck.Parameters.AddWithValue("@fecha", fecha);
+                    cmdCheck.Parameters.AddWithValue("@franja", franja);
+                    cmdCheck.Parameters.AddWithValue("@cancha", idCancha);
+                    int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                    if (existe > 0)
+                    {
+                        btn.BackColor = Color.LightGray;
+                        btn.Enabled = false;
+                        btn.Tag = null;
+                        MessageBox.Show("Ya reservada: " + nombreCancha + " - " + franja);
+                    }
+                    else
+                    {
+                        // Insertar reserva
+                        string sqlInsert = "INSERT INTO Reservas (fecha_reserva, franja_horaria, id_Cancha, id_Usuario) VALUES (@fecha, @franja, @cancha, @usuario)";
+                        MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conex.conn);
+                        cmdInsert.Parameters.AddWithValue("@fecha", fecha);
+                        cmdInsert.Parameters.AddWithValue("@franja", franja);
+                        cmdInsert.Parameters.AddWithValue("@cancha", idCancha);
+                        cmdInsert.Parameters.AddWithValue("@usuario", idUsuario);
+
+                        int filas = cmdInsert.ExecuteNonQuery();
+
+                        if (filas > 0)
                         {
-                            // Ya está ocupada - Desactivar y marcar gris
+                            btn.BackColor = Color.LightBlue;
                             btn.Enabled = false;
-                            btn.BackColor = Color.LightGray;
                             btn.Tag = null;
+                            MessageBox.Show("Reserva guardada: " + nombreCancha + " - " + franja);
                         }
                         else
                         {
-                            // Insertar reserva
-                            string sqlInsert = "INSERT INTO Reservas (fecha_reserva, franja_horaria, id_Cancha, id_Usuario) " +
-                                               "VALUES (@fecha, @franja, @idCancha, @idUsuario)";
-                            MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conex.conn);
-                            cmdInsert.Parameters.AddWithValue("@fecha", fecha);
-                            cmdInsert.Parameters.AddWithValue("@franja", franja);
-                            cmdInsert.Parameters.AddWithValue("@idCancha", idCancha);
-                            cmdInsert.Parameters.AddWithValue("@idUsuario", idUsuario);
-                            cmdInsert.ExecuteNonQuery();
-
-                            // Marcar como reservado 
-                            btn.BackColor = Color.LightSkyBlue;
-                            btn.Enabled = false;
-                            btn.Tag = null;
+                            MessageBox.Show("Error: No se insertó ninguna fila.");
                         }
                     }
                 }
 
-                MessageBox.Show("Reserva(s) procesada(s).");
                 conex.CerrarConexion();
             }
             catch (Exception ex)
@@ -161,6 +198,22 @@ namespace Reservas_padel
                 conex.CerrarConexion();
             }
         }
+
+        private void BuscarBotonesSeleccionados(Control.ControlCollection controles, List<Button> lista)
+        {
+            foreach (Control ctrl in controles)
+            {
+                if (ctrl is Button btn && btn.Tag != null && btn.Tag.ToString() == "seleccionado")
+                {
+                    lista.Add(btn);
+                }
+                else if (ctrl.HasChildren)
+                {
+                    BuscarBotonesSeleccionados(ctrl.Controls, lista); // recursivo
+                }
+            }
+        }
+
 
         private void button53_Click(object sender, EventArgs e)
         {
@@ -181,6 +234,11 @@ namespace Reservas_padel
         {
             MisReservas ver = new MisReservas();
             ver.ShowDialog();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

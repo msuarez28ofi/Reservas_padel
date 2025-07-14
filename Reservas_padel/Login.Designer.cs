@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             pictureBox1 = new PictureBox();
             tbUsuario = new TextBox();
             tbContrasena = new TextBox();
@@ -41,24 +42,25 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.logoPadel;
-            pictureBox1.Location = new Point(132, 12);
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(183, 155);
+            pictureBox1.Size = new Size(731, 496);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // tbUsuario
             // 
-            tbUsuario.Location = new Point(150, 227);
+            tbUsuario.Location = new Point(437, 215);
             tbUsuario.Name = "tbUsuario";
             tbUsuario.Size = new Size(150, 31);
             tbUsuario.TabIndex = 1;
             // 
             // tbContrasena
             // 
-            tbContrasena.Location = new Point(150, 309);
+            tbContrasena.Location = new Point(437, 311);
             tbContrasena.Name = "tbContrasena";
             tbContrasena.PasswordChar = '*';
             tbContrasena.Size = new Size(150, 31);
@@ -100,9 +102,9 @@
             // 
             // btIngresar
             // 
-            btIngresar.Location = new Point(168, 379);
+            btIngresar.Location = new Point(491, 389);
             btIngresar.Name = "btIngresar";
-            btIngresar.Size = new Size(112, 34);
+            btIngresar.Size = new Size(112, 38);
             btIngresar.TabIndex = 5;
             btIngresar.Text = "Ingresar";
             btIngresar.UseVisualStyleBackColor = true;
@@ -116,7 +118,7 @@
             btEnviarARegistro.FlatStyle = FlatStyle.Flat;
             btEnviarARegistro.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btEnviarARegistro.ForeColor = SystemColors.ButtonHighlight;
-            btEnviarARegistro.Location = new Point(20, 457);
+            btEnviarARegistro.Location = new Point(300, 463);
             btEnviarARegistro.Name = "btEnviarARegistro";
             btEnviarARegistro.Size = new Size(431, 33);
             btEnviarARegistro.TabIndex = 6;
@@ -129,7 +131,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 32, 37);
-            ClientSize = new Size(456, 496);
+            ClientSize = new Size(731, 496);
             Controls.Add(btEnviarARegistro);
             Controls.Add(btIngresar);
             Controls.Add(label2);
